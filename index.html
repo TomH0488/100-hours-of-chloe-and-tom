@@ -22,7 +22,6 @@
             text-align: center;
         }
         .slideshow-container {
-            display: none; /* Hide slideshow initially */
             position: relative;
             max-width: 750px;
             margin: auto;
@@ -100,49 +99,22 @@
             height: auto;
             border-radius: 8px;
         }
-        .password-container {
-            text-align: center;
-            margin-top: 100px;
-        }
-        .password-input {
-            font-size: 20px;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: none;
-        }
-        .password-button {
-            padding: 10px 20px;
-            background-color: #ff6666;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-        }
     </style>
 </head>
 <body>
-    <!-- Password Prompt Section -->
-    <div class="password-container">
-        <h1>Enter Password to View Slideshow</h1>
-        <input type="password" id="password" class="password-input" placeholder="Enter password">
-        <button class="password-button" onclick="checkPassword()">Submit</button>
-    </div>
-
-    <!-- Slideshow Container -->
+    <h1>105 Hours of Chloe and Tom</h1>
     <div class="slideshow-container">
         <div class="slide">
             <div class="caption">Hour 1 - First photo, us with squishy guy (R.I.P)</div>
             <img src="https://github.com/TomH0488/100-hours-of-chloe-and-tom/blob/main/images/first%20photo.JPG?raw=true" alt="Memory 1">
         </div>
         <div class="slide">
-            <div class="caption">Hour 20 - Even though I was very noob we got to the head pats</div>
+            <div class="caption">Hour 20 - Even though I was very noob we got to the head pats </div>
             <img src="https://github.com/TomH0488/100-hours-of-chloe-and-tom/blob/main/images/patting%20my%20girl.JPG?raw=true" alt="Memory 2">
         </div>
         <div class="slide">
             <div class="caption">Look how cute you guys are</div>
-            <img src="https://github.com/TomH0488/100-hours-of-chloe-and-tom/blob/main/images/CUTIE.JPG?raw=true" alt="Memory 3">
+            <img src="https://github.com/TomH0488/100-hours-of-chloe-and-tom/blob/main/images/CUTIE.JPG?raw=true"Memory 3">
         </div>
         <div class="slide">
             <div class="caption">Hour 26 - Our first photo after you asked me to be your boyfriend</div>
@@ -233,14 +205,12 @@
             <div class="caption">Hour 106 - immense sadness that can only be cured with you returning</div>
             <img src="https://github.com/TomH0488/100-hours-of-chloe-and-tom/blob/main/images/sadness.PNG?raw=true">
         </div>
-<button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
         <button class="next" onclick="changeSlide(1)">&#10095;</button>
     </div>
-
     <script>
         let slideIndex = 0;
-        const correctPassword = "smallcookie"; // Set your desired password here
-
+        
         function showSlides(n) {
             let slides = document.getElementsByClassName("slide");
             if (n >= slides.length) { slideIndex = 0; }
@@ -251,22 +221,13 @@
             }
             slides[slideIndex].style.display = "flex";
         }
-
+        
         function changeSlide(n) {
             slideIndex += n;
             showSlides(slideIndex);
         }
-
-        function checkPassword() {
-            const enteredPassword = document.getElementById("password").value;
-            if (enteredPassword === correctPassword) {
-                document.querySelector(".password-container").style.display = "none";
-                document.querySelector(".slideshow-container").style.display = "flex"; // Show slideshow
-                showSlides(slideIndex); // Display the first slide
-            } else {
-                alert("Incorrect password, please try again.");
-            }
-        }
+        
+        showSlides(slideIndex);
     </script>
 </body>
 </html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo & Video Slideshow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, black, #ff6666);
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            color: #ff6666;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 750px;
+            margin: auto;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .slide {
+            display: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-direction: column;
+            width: 100%;
+        }
+        .slide img, .slide video {
+            width: 75%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .slide img.memory4 {
+            width: 60%; /* Slightly smaller */
+        }
+        .caption {
+            width: 75%;
+            font-size: 25px;
+            text-align: center;
+            padding: 10px;
+            color: white;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 10px;
+            background-color: rgba(255, 102, 102, 0.7);
+            color: white;
+            font-size: 18px;
+            border: none;
+            transform: translateY(-50%);
+            z-index: 3;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .stacked-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: 10px;
+            overflow-y: auto;
+            max-height: 75vh;
+        }
+        .stacked-images img {
+            width: 75%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .grid-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            width: 75%;
+        }
+        .grid-images img, .grid-images video {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>105 Hours of Chloe and Tom</h1>
+    <div class="slideshow-container">
+        <div class="slide">
+            <div class="caption">Hour 1 - First photo, us with squishy guy (R.I.P)</div>
+            <img src="d:\\CHLOE\\first photo.JPG" alt="Memory 1">
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 20 - Even though I was very noob we got to the head pats</div>
+            <img src="d:\\CHLOE\\patting my girl.JPG" alt="Memory 2">
+        </div>
+        <div class="slide">
+            <div class="caption">Look how cute you guys are</div>
+            <img src="d:\\CHLOE\\CUTIE.JPG" alt="Memory 3">
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 26 - Our first photo after you asked me to be your boyfriend</div>
+            <img class="memory4" src="d:\\CHLOE\\feet.jpg" alt="Memory 4">
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 44 - Our first dog walk and colouring</div>
+            <div class="stacked-images">
+                <img src="d:\\CHLOE\\wlking dog.JPG" alt="Memory 5a">
+                <img src="d:\\CHLOE\\colouring in.JPG" alt="Memory 5b">
+            </div>
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 45 - Cooking dinner for my family coz u the goat</div>
+            <div class="stacked-images">
+                <img src="d:\\CHLOE\\cooking dinner 2.jpg" alt="Memory 7a">
+                <img src="d:\\CHLOE\\cooking dinner.JPG" alt="Memory 7b">
+            </div>
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 67 - finished shopping, u made me look poor but u look good so it doesnt matter</div>
+            <img src="d:\\CHLOE\\rich girl.JPG" alt="Memory 8">
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 68 - my 2 goats together</div>
+            <div class="stacked-images">
+                <img src="d:\\CHLOE\\cookie1.JPG" alt="Memory 9a">
+                <img src="d:\\CHLOE\\cookie 2.JPG" alt="Memory 9b">
+            </div>
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 70 - swag photo getting ready for movies</div>
+            <div class="stacked-images">
+                <img src="d:\\CHLOE\\swag photo.JPG" alt="Memory 10a">
+                <img src="d:\\CHLOE\\eyeballs x2.jpg" alt="Memory 10b">
+            </div>
+        </div>
+        <div class="slide">
+            <div class="caption">quick kfc break for cookie</div>
+            <img src="d:\\CHLOE\\kfc woman.JPG" alt="Memory 11">
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 71 - Our first movie date</div>
+            <div class="grid-images">
+                <img src="d:\\CHLOE\\movies 1.JPG" alt="Memory 12a">
+                <img src="d:\\CHLOE\\movies 2.JPG" alt="Memory 12b">
+                <img src="d:\\CHLOE\\movies 3.JPG" alt="Memory 12c">
+                <img src="d:\\CHLOE\\movies scary tom.JPG" alt="Memory 12d">
+            </div>
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 73 - post movie sonic interview</div>
+            <div class="stacked-images">
+                <img src="d:\\CHLOE\\photo with sonic.JPG" alt="Memory 13a">
+                <img src="d:\\CHLOE\\photo with sonic swag.JPG" alt="Memory 13b">
+            </div>
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 89 - The bowling incident</div>
+            <div class="grid-images">
+                <img src="d:\\CHLOE\\bowling food.JPG" alt="Memory 14a">
+                <img src="d:\\CHLOE\\bowling goat.jpg" alt="Memory 14b">
+                <img src="d:\\CHLOE\\bolwing.jpg" alt="Memory 14c">
+                <video controls>
+                    <source src="d:\\CHLOE\\bowling vid.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <!-- Adding 5 more slides -->
+        <div class="slide">
+            <div class="caption">Hour 93-95 First dinner date</div>
+            <div class="grid-images">
+                <img src="d:\\CHLOE\\phone booth.JPG" alt="Memory 15a">
+                <img src="d:\\CHLOE\\thumbs up dinner.JPG" alt="Memory 15b">
+                <img src="d:\\CHLOE\\ice cream tgther.JPG" alt="Memory 15c">
+                <img src="d:\\CHLOE\\kiss.jpg" alt="Memory 15d">
+            </div>
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 105 - saying goodbye to cookie</div>
+            <video controls>
+                <source src="d:\CHLOE\chloe cookie.mov" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="slide">
+            <div class="caption">Hour 106 - immense sadness that can only be cured with you returning</div>
+            <img src="d:\\CHLOE\\sadness.PNG" alt="Memory 17">
+        </div>
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+    <script>
+        let slideIndex = 0;
+        
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            if (n >= slides.length) { slideIndex = 0; }
+            if (n < 0) { slideIndex = slides.length - 1; }
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex].style.display = "flex";
+        }
+        
+        function changeSlide(n) {
+            slideIndex += n;
+            showSlides(slideIndex);
+        }
+        
+        showSlides(slideIndex);
+    </script>
+</body>
+</html>

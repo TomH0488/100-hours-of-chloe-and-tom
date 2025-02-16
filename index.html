@@ -21,12 +21,43 @@
             margin-bottom: 30px;
             text-align: center;
         }
+        /* Password screen styles */
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            z-index: 10;
+        }
+        .password-screen input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .password-screen button {
+            padding: 10px;
+            background-color: #ff6666;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .password-screen p {
+            color: white;
+        }
+        /* Slideshow container styles */
         .slideshow-container {
             position: relative;
             max-width: 750px;
             margin: auto;
             z-index: 2;
-            display: flex;
+            display: none; /* Initially hidden */
             align-items: center;
             justify-content: center;
             flex-direction: column;
@@ -39,21 +70,46 @@
             position: relative;
             flex-direction: column;
             width: 100%;
+            overflow: hidden; /* To ensure content doesn’t overflow outside */
         }
         .slide img, .slide video {
-            width: 75%;
+            width: 80%;
             height: auto;
             border-radius: 8px;
         }
-        .slide img.memory4 {
-            width: 60%; /* Slightly smaller */
-        }
         .caption {
-            width: 75%;
+            width: 80%;
             font-size: 25px;
             text-align: center;
             padding: 10px;
             color: white;
+        }
+        /* Stacked image slide */
+        .stacked-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: auto; /* Allow scroll for this slide */
+            max-height: 500px; /* Set a max height for scrolling */
+            margin: 10px 0; /* Space between stacked images */
+        }
+        .stacked-images img {
+            margin: 10px 0;
+            width: 80%; /* Adjust image size */
+        }
+        /* Grid image slide */
+        .grid-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            align-items: center;
+            justify-items: center;
+            overflow: auto;
+            max-height: 500px; /* Set a max height for scrolling */
+            margin: 10px 0; /* Space between grid images */
+        }
+        .grid-images img {
+            width: 100%; /* Adjust image size for grid */
         }
         .prev, .next {
             cursor: pointer;
@@ -74,36 +130,20 @@
         .next {
             right: 0;
         }
-        .stacked-images {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 10px;
-            overflow-y: auto;
-            max-height: 75vh;
-        }
-        .stacked-images img {
-            width: 75%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .grid-images {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            width: 75%;
-        }
-        .grid-images img, .grid-images video {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
     </style>
 </head>
 <body>
     <h1>105 Hours of Chloe and Tom</h1>
-    <div class="slideshow-container">
+    <!-- Password screen -->
+    <div id="password-screen" class="password-screen">
+        <h2>Please Enter Password</h2>
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="error-message" style="display: none; color: red;">Incorrect password, please try again.</p>
+    </div>
+
+    <!-- Slideshow container -->
+    <div id="slideshow" class="slideshow-container">
         <div class="slide">
             <div class="caption">Hour 1 - First photo, us with squishy guy (R.I.P)</div>
             <img src="https://github.com/TomH0488/100-hours-of-chloe-and-tom/blob/main/images/first%20photo.JPG?raw=true" alt="Memory 1">
@@ -114,7 +154,7 @@
         </div>
         <div class="slide">
             <div class="caption">Look how cute you guys are</div>
-            <img src="https://github.com/TomH0488/100-hours-of-chloe-and-tom/blob/main/images/CUTIE.JPG?raw=true"Memory 3">
+            <img src="https://github.com/TomH0488/100-hours-of-chloe-and-tom/blob/main/images/CUTIE.JPG?raw=true" alt="Memory 3">
         </div>
         <div class="slide">
             <div class="caption">Hour 26 - Our first photo after you asked me to be your boyfriend</div>
@@ -209,25 +249,44 @@
         <button class="next" onclick="changeSlide(1)">&#10095;</button>
     </div>
     <script>
+        const correctPassword = "1234"; // The password to access the slideshow
+
+        // This function checks the entered password
+        function checkPassword() {
+            const passwordInput = document.getElementById("password").value; // Get the user input
+            const errorMessage = document.getElementById("error-message"); // Get the error message element
+
+            // If the password is correct, show the slideshow and hide the password screen
+            if (passwordInput === correctPassword) {
+                document.getElementById("password-screen").style.display = "none"; // Hide password screen
+                document.getElementById("slideshow").style.display = "flex"; // Show slideshow
+                showSlides(slideIndex); // Show the first slide
+
+                // Enable navigation buttons
+                document.querySelector(".prev").disabled = false;
+                document.querySelector(".next").disabled = false;
+            } else {
+                errorMessage.style.display = "block"; // Show error if password is wrong
+            }
+        }
+
         let slideIndex = 0;
-        
+
         function showSlides(n) {
             let slides = document.getElementsByClassName("slide");
             if (n >= slides.length) { slideIndex = 0; }
             if (n < 0) { slideIndex = slides.length - 1; }
-            
+
             for (let i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
             slides[slideIndex].style.display = "flex";
         }
-        
+
         function changeSlide(n) {
             slideIndex += n;
             showSlides(slideIndex);
         }
-        
-        showSlides(slideIndex);
     </script>
 </body>
 </html>
